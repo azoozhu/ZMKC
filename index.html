@@ -1,126 +1,153 @@
-import { useState } from 'react'
-
-export default function Component() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  })
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }))
-  }
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    alert('Thank you for your message! We will get back to you soon.')
-    setFormData({ name: '', email: '', message: '' })
-  }
-
-  return (
-    <div className="min-h-screen flex flex-col bg-white text-gray-800">
-      <header className="bg-blue-600 text-white py-6">
-        <div className="container mx-auto px-4">
-          <div className="text-3xl font-bold mb-4">ZMKC,LLC</div>
-          <nav>
-            <ul className="flex justify-center space-x-6">
-              <li><a href="#about" className="hover:opacity-80 transition-opacity">About Us</a></li>
-              <li><a href="#services" className="hover:opacity-80 transition-opacity">Services</a></li>
-              <li><a href="#contact" className="hover:opacity-80 transition-opacity">Contact</a></li>
-            </ul>
-          </nav>
-        </div>
-      </header>
-
-      <main className="flex-grow">
-        <section id="about" className="py-16">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center text-blue-600 mb-8">About Us</h2>
-            <p className="text-center max-w-2xl mx-auto">
-              ZMKC,LLC (Zhai Men Ke Chuang) is a technology company specializing in AI solutions. We are dedicated to providing advanced artificial intelligence technologies to help businesses optimize operations, improve efficiency, and drive innovation.
-            </p>
-          </div>
-        </section>
-
-        <section id="services" className="py-16 bg-gray-100">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center text-blue-600 mb-8">Our Services</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-white p-6 rounded-lg shadow-md transition-transform hover:-translate-y-1">
-                <h3 className="text-xl font-semibold mb-4">Machine Learning Applications</h3>
-                <p>We develop custom machine learning models to help businesses gain insights from data and make more informed decisions.</p>
-              </div>
-              <div className="bg-white p-6 rounded-lg shadow-md transition-transform hover:-translate-y-1">
-                <h3 className="text-xl font-semibold mb-4">Natural Language Processing</h3>
-                <p>We offer advanced NLP solutions, including text analysis, sentiment analysis, and intelligent dialogue systems.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="contact" className="py-16">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center text-blue-600 mb-8">Contact Us</h2>
-            <form onSubmit={handleSubmit} className="max-w-md mx-auto">
-              <div className="mb-4">
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  placeholder="Name"
-                  required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-              <div className="mb-4">
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  placeholder="Email"
-                  required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-              <div className="mb-4">
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  placeholder="Message"
-                  rows={5}
-                  required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors"
-              >
-                Send
-              </button>
-            </form>
-            <p className="text-center mt-6">Company Email: cyz18845007587@gmail.com</p>
-          </div>
-        </section>
-      </main>
-
-      <footer className="bg-blue-600 text-white py-6">
-        <div className="container mx-auto px-4 text-center">
-          <p>&copy; 2024 ZMKC,LLC (Zhai Men Ke Chuang). All rights reserved.</p>
-          <div className="mt-4 space-x-4">
-            <a href="#" target="_blank" rel="noopener noreferrer" className="hover:underline">LinkedIn</a>
-            <a href="#" target="_blank" rel="noopener noreferrer" className="hover:underline">Twitter</a>
-            <a href="#" target="_blank" rel="noopener noreferrer" className="hover:underline">GitHub</a>
-          </div>
-        </div>
-      </footer>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陈禹竹的简历</title>
+    <style>
+        body {
+            font-family: "SimSun", "宋体", serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #000;
+            line-height: 1.5;
+        }
+        h1 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        .contact-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .contact-info span {
+            margin: 0 10px;
+        }
+        h2 {
+            border-bottom: 1px solid #000;
+            padding-bottom: 5px;
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .education, .work-experience, .project-experience, .skills {
+            margin-bottom: 15px;
+        }
+        .company, .school {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .position {
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        ul {
+            margin-top: 5px;
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        .project-title {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .date {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <h1>陈禹竹</h1>
+    <div class="contact-info">
+        <span>📧 ZMKC808@gmail.com</span> · 
+        <span>📞 18845007587</span> · 
+        <span>💬 ZMKC808</span> · 
+        <span>📍 杭州</span>
     </div>
-  )
-}
+
+    <h2>个人简介</h2>
+    <p>3 年新媒体运营经验，擅长数据驱动内容策划与 AI 工具应用。拥有全国 500+ 高校操盘手资源与号商渠道，掌握小红书纯净环境搭建（设备/网络/账号）、自热截流一体化技术与全平台打粉 SOP。多次从 0 到 1 搭建账号矩阵，具备高权重素人矩阵代发渠道，注重 ROI 与执行效率。</p>
+
+    <h2>教育背景</h2>
+    <div class="education">
+        <div class="school">
+            <span>哈尔滨师范大学，西班牙语专业</span>
+            <span>2018.09 – 2022.06</span>
+        </div>
+        <p>一等奖学金（2020-2021），校级优秀毕业生（专业排名前 5%）</p>
+    </div>
+
+    <h2>工作经历</h2>
+    <div class="work-experience">
+        <div class="company">
+            <span>灵动狐文化传媒有限公司, 杭州</span>
+            <span>2024.02 – 2025.04</span>
+        </div>
+        <div class="position">项目操盘手</div>
+        <ul>
+            <li>电商运营：从 0 到 1 搭建小红书虚拟店铺，2 周内实现单品销量 2000+，虚拟资道细分品类 TOP1</li>
+            <li>数据增长：运营 AI 代写账号，设计完整转化路径，单账号 7 天内净利润 2w+；代运营旅游和家车账号矩阵，1 个月内精准客资增长 200%，整体曝光提升 5 倍</li>
+            <li>效率提升：设计影刀 RPA 与 Coze AI 自动化工作流，实现小红书批量采集并自动同步飞书 +AI 改写，覆盖电脑端、安卓和 IOS 端，创作效率提升 20 倍</li>
+            <li>团队管理：带领 3 人团队，制定标准化 SOP 与绩效考核，确保客户满意度与按期交付</li>
+        </ul>
+    </div>
+
+    <div class="work-experience">
+        <div class="company">
+            <span>上海不逊信息科技有限公司, 杭州</span>
+            <span>2023.03 – 2024.01</span>
+        </div>
+        <div class="position">新媒体运营主管</div>
+        <ul>
+            <li>账号运营：搭建品牌小红书店铺，制定账号定位与爆款内容模板，带领团队高效执行</li>
+            <li>内容策划：产出 180 篇精细化笔记，打造 10 余篇 10w+ 爆文（最高 100w+），单篇爆款商品笔记测览 10w+，带动店铺月销 5000+</li>
+            <li>效率优化：引入影刀 RPA 自动化工作流，实现笔记发布和数据监控自动化，团队效率提升 60%-70%</li>
+        </ul>
+    </div>
+
+    <div class="work-experience">
+        <div class="company">
+            <span>杭州奇异橙品牌管理有限公司, 杭州</span>
+            <span>2022.03 – 2023.03</span>
+        </div>
+        <div class="position">新媒体运营专员</div>
+        <ul>
+            <li>公众号运营：独立输出 60 篇原创推文，粉丝增长 6.5w，同比提升 400%</li>
+            <li>私域运营：搭建 5 个主题社群，新增 1000+ 精准用户，维持社群活跃率 30%+，促进品牌转化</li>
+        </ul>
+    </div>
+
+    <h2>项目经历</h2>
+    <div class="project-experience">
+        <div class="project-title">技术应用项目</div>
+        <div class="date">2024.03 – 2025.03</div>
+        <ul>
+            <li>去水印小程序：零技术基础下利用 AI 开发微信小程序，独立完成从需求到上线全流程，开发周期 2 周。链接：# 小程序J/它喵的水印/akqkWRImfwJY7Wq</li>
+            <li>企业知识库：使用 Cursor 搭建内部知识管理系统，配置内网穿透实现远程访问，提升团队协作效率</li>
+            <li>健身数据系统：利用 Claude 3.7 快速开发个人健身打卡系统，包含完整数据分析功能</li>
+        </ul>
+    </div>
+
+    <div class="project-experience">
+        <div class="project-title">创业实践项目</div>
+        <div class="date">2022.03 – 2023.06</div>
+        <ul>
+            <li>小红书社交活动：针对留航人群交友需求策划线上引流活动，5 天实现曝光 2.6w+，社群增 600+，引流私域 300+，实现近 1000 元</li>
+            <li>校园人力资源项目：对接江浙沪企业劳务需求与校园学生资源，单个寒假期间营收 3w+</li>
+        </ul>
+    </div>
+
+    <h2>专业技能</h2>
+    <ul>
+        <li>技术工具：Office（精通），影刀 RPA（一级工程师认证），AI 创作工具（ChatGPT、Claude、Midjourney）（熟练）</li>
+        <li>设计能力：Adobe 系列（PS、AI、PR）（熟练），XD 原型设计（熟悉）</li>
+        <li>语言能力：英语（CET-6），西班牙语（专业背景）</li>
+    </ul>
+</body>
+</html>
